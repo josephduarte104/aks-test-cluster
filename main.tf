@@ -1,13 +1,13 @@
-resource "azurerm_resource_group" "example" {
-  name     = "example-resources"
+resource "azurerm_resource_group" "jdtest" {
+  name     = "jdtest-resources"
   location = "West Europe"
 }
 
-resource "azurerm_kubernetes_cluster" "example" {
-  name                = "example-aks1"
-  location            = azurerm_resource_group.example.location
-  resource_group_name = azurerm_resource_group.example.name
-  dns_prefix          = "exampleaks1"
+resource "azurerm_kubernetes_cluster" "jdtest" {
+  name                = "jdtest-aks1"
+  location            = azurerm_resource_group.jdtest.location
+  resource_group_name = azurerm_resource_group.jdtest.name
+  dns_prefix          = "jdtestaks1"
 
   default_node_pool {
     name       = "default"
@@ -25,12 +25,12 @@ resource "azurerm_kubernetes_cluster" "example" {
 }
 
 output "client_certificate" {
-  value     = azurerm_kubernetes_cluster.example.kube_config.0.client_certificate
+  value     = azurerm_kubernetes_cluster.jdtest.kube_config.0.client_certificate
   sensitive = true
 }
 
 output "kube_config" {
-  value = azurerm_kubernetes_cluster.example.kube_config_raw
+  value = azurerm_kubernetes_cluster.jdtest.kube_config_raw
 
   sensitive = true
 }
